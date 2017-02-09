@@ -2,9 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
-
+import { Contacts } from '../pages/contacts/contacts';
+import { Unlock } from '../pages/unlock/unlock';
+import { HomePage } from '../pages/home/home';
+import {SummaryPage} from  "../pages/summary/summary"
+import { AuthoptionsPage} from "../pages/authoptions/authoptions"
+import { UploadPage } from "../pages/upload/upload"
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +15,7 @@ import { Page2 } from '../pages/page2/page2';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -21,8 +24,12 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Page One', component: Page1 },
-      { title: 'Page Two', component: Page2 }
+      { title: 'Contacts', component: Contacts },
+      { title: 'Unlock', component: Unlock },
+      { title: 'Home', component: HomePage},
+      { title: 'Summary', component: SummaryPage},
+      { title: 'Authentication Options', component: AuthoptionsPage},
+      { title: 'Upload', component: UploadPage}
     ];
 
   }
