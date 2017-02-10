@@ -8,24 +8,24 @@ export class DataService {
   static get parameters() {
     return [[Http]];
   }
-
+  baseURL: string;
   constructor(private http: Http, private device: Device) {
+    // this.baseURL = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/";
+    this.baseURL = "http://localhost:8080/ppapi/v1-0/";
 
   }
 
   getURL(url) {
-    var baseURL = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/";
-    var response = this.http.get(baseURL + url).map(res => res.json());
+    var response = this.http.get(this.baseURL + url).map(res => res.json());
     return response;
   }
 
   postData(data, url) {
-    var baseURL = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/";
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     var response = this.http.post(
-      baseURL + url,
+      this.baseURL + url,
       JSON.stringify(data),
       {headers: headers}
     ).map(
