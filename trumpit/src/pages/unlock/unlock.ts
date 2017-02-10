@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {UploadProvider} from "../../providers/upload-provider";
 import {Observer} from "rxjs";
+import { FingerprintAIO } from 'ionic-native';
+import { Geolocation } from 'ionic-native';
 
 @Component({
   selector: 'page-unlock',
@@ -19,6 +21,9 @@ export class Unlock {
   keyIcon: string = "key";
   checkmark: string = "checkmark";
   authenticatedContacts: Array<Object> = [];
+  public gpsLocation;
+  public gpsLocation_latitude;
+  public gpsLocation_longitude;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider) {
     this.user = {
@@ -60,5 +65,41 @@ export class Unlock {
   public checkStatus() {
 
   }
+
+  public authenticateFP = () => {
+    console.log('hi');
+    this.check();
+  }
+
+  check(){
+    console.log('check');
+    FingerprintAIO.isAvailable().then(result =>{
+      this.show();
+    }).catch(err => {
+      alert('no fingerprint');
+    });
+  }
+
+  show(){
+      FingerprintAIO.show({
+       clientId: "Fingerprint-Demo",
+       clientSecret: "password"
+   }).then(result => {
+        console.log(result);
+
+        Geolocation.getCurrentPosition().then((position) => {
+            this.gpsLocation = position;
+            this.gpsLocation_latitude = position.coords.latitude;
+            this.gpsLocation_longitude = position.coords.longitude;
+
+            }, (err) => {
+              console.log(err);
+            });
+
+
+      }).catch(err => {
+        console.log(err);
+      });
+    }
 
 }

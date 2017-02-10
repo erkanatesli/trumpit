@@ -14,12 +14,12 @@
     </ion-card-title>
   </ion-card>
   <ion-card>
-    <button ion-item>
+    <button ion-item (click)="authenticateFP()">
       <ion-icon [name]="gpsIcon" [class.valid]="user.gps" [class.invalid]="!user.gps"></ion-icon>
       <ion-icon [name]="fpIcon" [class.valid]="user.fp" [class.invalid]="!user.fp"></ion-icon>
       <div class="item-note" item-right>
         {{user.userid}}
-        <button ion-button (click)="authenticateFP()" right>
+        <button ion-button right>
           <ion-icon [name]="keyIcon" ></ion-icon> Authenticate
         </button>
       </div>
@@ -50,4 +50,7 @@
   <button ion-button full (click)="checkStatus()" style="position: absolute; bottom: 0px;">
     <ion-icon [name]="keyIcon" ></ion-icon>
   </button>
+
+  <h1>Latitude = {{gpsLocation_latitude}}</h1>
+  <h1>Longitude = {{gpsLocation_longitude}}</h1>
 </ion-content>
