@@ -17,9 +17,14 @@
 
 
 <ion-content padding>
+  <!-- Enter Subject -->
+  <ion-item color="light" style="">
+    <ion-label>Enter Subject:</ion-label>
+    <ion-input type="text" [(ngModel)]="subjectName"></ion-input>
+  </ion-item>
 
   <!-- Select file -->
-  <img src="{{secretFile}}" style="width: 80%; height: 300px; margin-left: auto; margin-right: auto; display: block;">
+  <img src="{{secretFile}}" style="width: 80%; height: 300px; margin-left: auto; margin-right: auto; display: block; padding-top: 15px;">
 
   <ion-row>
     <ion-col>
