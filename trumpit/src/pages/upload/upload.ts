@@ -47,48 +47,30 @@ export class UploadPage implements OnInit {
     console.log('Sendmessage');
 
     //creating object
-
-    let uploadData = {
-      "senderId": this.dataService.getUDID(),
-      "base64Image": this.secretFile,
-      "contacts": 30,
-      "authTypes": {
-        "first-line": "Some where",
-        "second-line": "Over Here",
-        "city": "In This City"
+    let authData = [];
+    for (var i = 0; i <= this.authLayers.length - 1; i++) {
+      if (this.authLayers[i].activated) {
+        authData.push({"name": this.authLayers[i].authMethod})
+        console.log('is selected', this.authLayers[i]);
       }
     }
 
-    console.log('uploaddata', uploadData);
+    let usersData = [];
+    for (var i = 0; i <= this.selectedUsers.length - 1; i++) {
+      usersData.push({"id": this.selectedUsers[i].relatieId})
+    }
 
+    // console.log('seleted users', this.selectedUsers);
+    let uploadData = {
+      "senderId": this.dataService.getUDID(),
+      "base64Image": this.secretFile,
+      "authTypes": authData,
+      "contacts": usersData
+    }
 
-    // {
-    //   "senderId":"123",
-    //   "base64Image":"asdfadsfasdfasdf234234535463456",
-    //   "contacts":[
-    //   {
-    //     "id":"2o3492348"
-    //   },
-    //   {
-    //     "id":"2o34953452348"
-    //   },
-    //   {
-    //     "id":"2o343242392348"
-    //   }
-    // ],
-    //   "authTypes":[
-    //   {
-    //     "name":"GPS"
-    //   },
-    //   {
-    //     "name":"Fingerprint"
-    //   }
-    // ]
-    // }
+    console.log('UploadData', uploadData);
 
-
-
-    this.dataService.postData(this.selectedUsers, "upload").subscribe(
+    this.dataService.postData(uploadData, "upload").subscribe(
       data => {
         console.log('Response:', data);
       },
