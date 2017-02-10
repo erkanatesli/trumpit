@@ -5,6 +5,8 @@ import {UploadProvider} from "../../providers/upload-provider";
 import {Observer} from "rxjs";
 import { FingerprintAIO } from 'ionic-native';
 import { Geolocation } from 'ionic-native';
+import {Observable} from 'rxjs/Rx';
+
 
 @Component({
   selector: 'page-unlock',
@@ -36,6 +38,13 @@ export class Unlock {
     };
 
     this.urlGif = "../assets/icon/cat.gif";
+
+    // Observable.interval(2000 * 60).subscribe(x => {
+    Observable.interval(1000).subscribe((x) => {
+      console.log('hi');
+      this.getGeo();
+      // doSomething();
+    });
 
     this.splitData(this.uploadProvider.getContacts(), this.user);
     // this.getData();
@@ -87,7 +96,7 @@ export class Unlock {
 
   public authenticateFP = () => {
     console.log('hi');
-    this.getGeo();
+    // this.getGeo();
     this.check();
   }
 
@@ -127,5 +136,7 @@ export class Unlock {
       console.log('hiiii');
       this.urlGif = "https://media.giphy.com/media/9fbYYzdf6BbQA/giphy.gif";
     };
+
+
 
 }
