@@ -32,7 +32,7 @@ export class UploadProvider {
 
     //
   }
-  retrieveData() : Observable<Object> {
+  public retrieveData() : Observable<Object> {
     return Observable.interval(2000)
       .switchMap((res) =>
         this.http.get(this.url)
