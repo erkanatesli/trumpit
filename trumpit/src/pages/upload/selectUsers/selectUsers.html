@@ -1,0 +1,14 @@
+<ion-header>MODAL</ion-header>
+<ion-content padding>
+
+  <ion-list>
+      <ion-item *ngFor="let user of users">
+        <ion-label>{{user.Username}}</ion-label>
+        <ion-checkbox [(ngModel)]="user.Selected"></ion-checkbox>
+      </ion-item>
+  </ion-list>
+
+  <button ion-button block (click)="close()">Close</button>
+
+
+</ion-content>

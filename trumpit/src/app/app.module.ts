@@ -9,6 +9,7 @@ import { AuthoptionsPage} from "../pages/authoptions/authoptions";
 import { UploadPage } from "../pages/upload/upload";
 import { gpsLocation } from "../pages/gpsLocation/gpsLocation";
 import { HttpModule } from '@angular/http';
+import { SelectUsers } from "../pages/upload/selectUsers/selectUsers";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpModule } from '@angular/http';
     SummaryPage,
     AuthoptionsPage,
     UploadPage,
-    gpsLocation
+    gpsLocation,
+    SelectUsers
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -34,7 +36,8 @@ import { HttpModule } from '@angular/http';
     SummaryPage,
     AuthoptionsPage,
     UploadPage,
-    gpsLocation
+    gpsLocation,
+    SelectUsers
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

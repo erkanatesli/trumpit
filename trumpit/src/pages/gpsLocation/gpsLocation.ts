@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
@@ -7,26 +7,42 @@ import { Geolocation } from 'ionic-native';
   selector: 'gpsLocation',
   templateUrl: 'gpsLocation.html'
 })
-export class gpsLocation {
+export class gpsLocation implements OnInit {
   public gpsLocation;
   public gpsLocation_latitude;
   public gpsLocation_longitude;
 
-  constructor(public navCtrl: NavController) {
+  private keepSending: boolean;
+
+  constructor(public navCtrl: NavController){
 
   }
 
-  public doFunction(){
+  ngOnInit() {
+    this.keepSending = false;
+    // this.sendGpsLocation();
+  }
+
+  private doFunction(){
     Geolocation.getCurrentPosition().then((position) => {
         this.gpsLocation = position;
-        console.log(gpsLocation);
+        console.log(this.gpsLocation);
         this.gpsLocation_latitude = position.coords.latitude;
         this.gpsLocation_longitude = position.coords.longitude;
-
 
         }, (err) => {
           console.log(err);
         });
+
+    this.keepSending = !this.keepSending;
+    console.log("Keep sending GPS Location = " + this.keepSending);
+    // while(this.keepSending){
+    //   // this.sendGpsLocation();
+    // }
+    setTimeout(30000, console.log("SEND"));
   }
 
+  private sendGpsLocation(){
+      console.log("Latitude = " + this.gpsLocation_latitude + "Longitude = "  + this.gpsLocation_longitude);
+  }
 }

@@ -1,22 +1,30 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams, ModalController} from 'ionic-angular';
+import { SelectUsers } from './selectUsers/selectUsers';
 
-/*
-  Generated class for the Upload page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-upload',
   templateUrl: 'upload.html'
 })
-export class UploadPage {
+export class UploadPage implements OnInit{
+  private selectedUsers: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+
+  }
+
+  ngOnInit() {
+    this.selectedUsers= ["Test"];
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UploadPage');
+  }
+
+  private selectUsers() {
+    let modal = this.modalCtrl.create(SelectUsers);
+    modal.present();
   }
 
 }
