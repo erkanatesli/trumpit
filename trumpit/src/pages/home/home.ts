@@ -40,13 +40,8 @@ export class HomePage {
     this.navCtrl.push(UploadPage);
   }
 
-
-  public showtext = () => {
-    console.log('hi');
-  };
-
   ngOnInit() {
-    this.check();
+
   }
 
   private getUserCount(){
@@ -55,27 +50,5 @@ export class HomePage {
       this.userCount.push(contacts.length)
     }
   }
-
-  check(){
-    console.log('check');
-    FingerprintAIO.isAvailable().then(result =>{
-      this.show();
-      console.log(result);
-    }).catch(err => {
-      alert('no fingerprint');
-      console.log(err);
-    });
-  }
-
-  show(){
-      console.log('show');
-      FingerprintAIO.show({
-       clientId: "Fingerprint-Demo"
-   }).then(result => {
-        console.log(result);
-      }).catch(err => {
-        console.log(err);
-      });
-    }
 
 }

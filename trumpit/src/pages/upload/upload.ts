@@ -13,6 +13,7 @@ export class UploadPage implements OnInit {
   private selectedUsers: Array<any>;
   private authLayers: Array<any>;
   private secretFile: string;
+  private subjectName: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public dataService: DataService) {
 
@@ -20,6 +21,7 @@ export class UploadPage implements OnInit {
 
   ngOnInit() {
     this.selectedUsers = [];
+    this.subjectName = "";
     this.authLayers = [
       {"authMethod": "GPS Location", "activated": false},
       {"authMethod": "Fingerprint", "activated": false},
@@ -81,7 +83,8 @@ export class UploadPage implements OnInit {
     );
 
     // console.log(this.selectedUsers);
-    // console.log(this.authLayers);
+    // console.log(this.authLayers);\
+    console.log("Filename = " + this.subjectName);
   }
 
   private takePicture() {

@@ -44,12 +44,10 @@
       </div>
     </button>
   </ion-card>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
   </div>
-  <button ion-button full (click)="checkStatus()" style="position: absolute; bottom: 0px;">
-    <ion-icon [name]="keyIcon" ></ion-icon>
-  </button>
+  <!--<button ion-button full (click)="checkStatus()" style="position: absolute; bottom: 0px;">-->
+    <!--<ion-icon [name]="keyIcon" ></ion-icon>-->
+  <!--</button>-->
 
   <h1>Latitude = {{gpsLocation_latitude}}</h1>
   <h1>Longitude = {{gpsLocation_longitude}}</h1>
