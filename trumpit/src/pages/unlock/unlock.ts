@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {UploadProvider} from "../../providers/upload-provider";
 import {Observer} from "rxjs";
 import { FingerprintAIO } from 'ionic-native';
@@ -12,6 +12,9 @@ import { Geolocation } from 'ionic-native';
   providers: [UploadProvider]
 })
 export class Unlock {
+  public gpsLocation;
+  public gpsLocation_latitude;
+  public gpsLocation_longitude;
   selectedItem: any;
   items: Array<{title: string, note: string, icon: string}>;
   user: Object;
@@ -21,11 +24,9 @@ export class Unlock {
   keyIcon: string = "key";
   checkmark: string = "checkmark";
   authenticatedContacts: Array<Object> = [];
-  public gpsLocation;
-  public gpsLocation_latitude;
-  public gpsLocation_longitude;
+  allAuthenticated: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider, private toastCtrl: ToastController) {
     this.user = {
       userid: "Nicolas",
       gps: false,
@@ -36,7 +37,7 @@ export class Unlock {
     // this.getData();
   }
 
-  getData(){
+  private getData(){
     this.uploadProvider.retrieveData()
       .subscribe((data:Object) =>
       {
@@ -44,7 +45,7 @@ export class Unlock {
       })
   }
 
-  splitData(data, _user) {
+  private splitData(data, _user) {
     console.log(data);
     for (let i in data) {
       if(data[i].userid === _user.userid){
@@ -62,8 +63,22 @@ export class Unlock {
     }
   }
 
-  public checkStatus() {
+  public checkStatus(t) {
 
+    if (this.contacts.length === 0) {
+      // goto next page
+    } else {
+      this.showErrorToast();
+    }
+  }
+
+  private showErrorToast() {
+    let toast = this.toastCtrl.create({
+      message: 'NOT AUTHORIZED',
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 
   public authenticateFP = () => {

@@ -30,6 +30,16 @@ export class SelectUsers implements OnInit {
           this.users[i].selected = false;
         }
 
+    // this.users = [
+    //   {"Username": "Jackie", "Selected": false},
+    //   {"Username": "William", "Selected": false},
+    //   {"Username": "Nicolas", "Selected": false},
+    //   {"Username": "Rohit", "Selected": false},
+    //   {"Username": "Ahmet", "Selected": false},
+    //   {"Username": "Erkan", "Selected": false},
+    //   {"Username": "Ka Long", "Selected": false},
+    // ]
+
         // console.log('Response:', data);
       },
       err => {

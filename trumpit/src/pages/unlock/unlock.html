@@ -17,12 +17,13 @@
     <button ion-item (click)="authenticateFP()">
       <ion-icon [name]="gpsIcon" [class.valid]="user.gps" [class.invalid]="!user.gps"></ion-icon>
       <ion-icon [name]="fpIcon" [class.valid]="user.fp" [class.invalid]="!user.fp"></ion-icon>
+      {{user.userid}}
       <div class="item-note" item-right>
-        {{user.userid}}
         <button ion-button right>
           <ion-icon [name]="keyIcon" ></ion-icon> Authenticate
         </button>
       </div>
+
     </button>
   </ion-card>
   <ion-card *ngFor="let contact of authenticatedContacts" >
@@ -44,10 +45,7 @@
       </div>
     </button>
   </ion-card>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
-  <button ion-button full (click)="checkStatus()" style="position: absolute; bottom: 0px;">
+  <button ion-button full (click)="checkStatus()" [disabled]="allAuthenticated" style="position: absolute; bottom: 0px;">
     <ion-icon [name]="keyIcon" ></ion-icon>
   </button>
 
