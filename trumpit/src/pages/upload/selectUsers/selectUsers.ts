@@ -25,7 +25,7 @@ export class SelectUsers implements OnInit{
     let selectedUsers: Array<any> = [];
     for(let i = 0; i < this.users.length; i++){
       if(this.users[i].Selected === true){
-        console.log(this.users[i].Username);
+        // console.log(this.users[i].Username);
         selectedUsers.push(this.users[i]);
       }
     }

@@ -21,9 +21,25 @@
   <!-- Select file -->
 
   <!-- Select users -->
-  <h2>{{selectedUsers}}</h2>
+  <h2>To Users:</h2>
+  <ion-list no-lines>
+    <h2 ion-item *ngFor="let user of selectedUsers">
+      {{ user.Username }}
+    </h2>
+  </ion-list>
   <button ion-button block (click)="selectUsers()">Select Users</button>
 
   <!-- Select auth layers-->
+  <h2>Authentication Layers:</h2>
+  <ion-list>
+      <ion-item *ngFor="let layer of authLayers">
+        <ion-label>{{layer.authMethod}}</ion-label>
+        <ion-checkbox [(ngModel)]="layer.activated"></ion-checkbox>
+      </ion-item>
+  </ion-list>
+
+  <!-- Send Message -->
+  <button ion-button block (click)="sendMessage()">Send Message</button>
+
 
 </ion-content>
