@@ -42,8 +42,8 @@ export class UploadPage implements OnInit{
   }
 
   private sendMessage() {
-    console.log(this.selectedUsers);
-    console.log(this.authLayers);
+    // console.log(this.selectedUsers);
+    // console.log(this.authLayers);
   }
 
   private takePicture(){
