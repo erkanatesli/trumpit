@@ -19,6 +19,10 @@
 <ion-content padding>
 
   <!-- Select file -->
+  <img src="{{secretFile}}" style="width: 80%; height: 500px;">
+
+  <button ion-button block color="light" (click)="takePicture()">Take Picture</button>
+  <button ion-button block color="light" (click)="uploadPicture()">Upload Picture</button>
 
   <!-- Select users -->
   <h2>To Users:</h2>
@@ -27,19 +31,19 @@
       {{ user.name }}
     </h2>
   </ion-list>
-  <button ion-button block (click)="selectUsers()">Select Users</button>
+  <button ion-button block color="light" (click)="selectUsers()">Select Users</button>
 
   <!-- Select auth layers-->
   <h2>Authentication Layers:</h2>
   <ion-list>
       <ion-item *ngFor="let layer of authLayers">
         <ion-label>{{layer.authMethod}}</ion-label>
-        <ion-checkbox [(ngModel)]="layer.activated"></ion-checkbox>
+        <ion-checkbox color="light" [(ngModel)]="layer.activated"></ion-checkbox>
       </ion-item>
   </ion-list>
 
   <!-- Send Message -->
-  <button ion-button block (click)="sendMessage()">Send Message</button>
+  <button ion-button block color="light" (click)="sendMessage()">Send Message</button>
 
 
 </ion-content>
