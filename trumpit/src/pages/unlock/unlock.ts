@@ -47,11 +47,12 @@ export class Unlock {
     // });
   }
 
-  private createStyle(numberOfElements, index) {
-    let rotation = this.calculateDegrees(numberOfElements);
-    let style = {
-      ""
-    }
+  // private createStyle(numberOfElements, index) {
+  private createStyle(numberOfElements){
+    // let rotation = this.calculateDegrees(numberOfElements);
+    // let style = {
+    //   ""
+    // }
 
   }
 
