@@ -68,6 +68,7 @@ export class Unlock {
 
   public authenticateFP = () => {
     console.log('hi');
+    this.getGeo();
     this.check();
   }
 
@@ -85,21 +86,22 @@ export class Unlock {
        clientId: "Fingerprint-Demo",
        clientSecret: "password"
    }).then(result => {
+        alert('post to backend');
         console.log(result);
-
-        Geolocation.getCurrentPosition().then((position) => {
-            this.gpsLocation = position;
-            this.gpsLocation_latitude = position.coords.latitude;
-            this.gpsLocation_longitude = position.coords.longitude;
-
-            }, (err) => {
-              console.log(err);
-            });
-
-
       }).catch(err => {
         console.log(err);
       });
+    }
+
+    getGeo() {
+      Geolocation.getCurrentPosition().then((position) => {
+          this.gpsLocation = position;
+          this.gpsLocation_latitude = position.coords.latitude;
+          this.gpsLocation_longitude = position.coords.longitude;
+
+          }, (err) => {
+            console.log(err);
+          });
     }
 
 }
