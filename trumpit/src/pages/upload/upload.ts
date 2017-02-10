@@ -66,7 +66,8 @@ export class UploadPage implements OnInit {
       "senderId": this.dataService.getUDID(),
       "base64Image": this.secretFile,
       "authTypes": authData,
-      "contacts": usersData
+      "contacts": usersData,
+      "subject": this.subjectName
     }
 
     console.log('UploadData', uploadData);
