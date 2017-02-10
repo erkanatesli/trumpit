@@ -15,7 +15,6 @@ export class SelectUsers implements OnInit {
   }
 
   ngOnInit() {
-<<<<<<< Updated upstream
     this.getUsers();
     this.users = [];
   }
@@ -30,17 +29,16 @@ export class SelectUsers implements OnInit {
         for (var i = 0; i <= this.users.length-1; i++) {
           this.users[i].selected = false;
         }
-=======
-    this.users = [
-      {"Username": "Jackie", "Selected": false},
-      {"Username": "William", "Selected": false},
-      {"Username": "Nicolas", "Selected": false},
-      {"Username": "Rohit", "Selected": false},
-      {"Username": "Ahmet", "Selected": false},
-      {"Username": "Erkan", "Selected": false},
-      {"Username": "Ka Long", "Selected": false},
-    ]
->>>>>>> Stashed changes
+
+    // this.users = [
+    //   {"Username": "Jackie", "Selected": false},
+    //   {"Username": "William", "Selected": false},
+    //   {"Username": "Nicolas", "Selected": false},
+    //   {"Username": "Rohit", "Selected": false},
+    //   {"Username": "Ahmet", "Selected": false},
+    //   {"Username": "Erkan", "Selected": false},
+    //   {"Username": "Ka Long", "Selected": false},
+    // ]
 
         // console.log('Response:', data);
       },
