@@ -21,7 +21,7 @@
       &nbsp;New secure transfer
   </button>
 
-  <ion-card *ngFor="let file of transfers let i = index">
+  <ion-card *ngFor="let file of transfers let i = index" (click)="goUnlockScreen()">
     <ion-item>
       {{file.subject}}
     </ion-item>
