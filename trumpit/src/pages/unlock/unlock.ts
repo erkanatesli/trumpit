@@ -25,6 +25,8 @@ export class Unlock {
   checkmark: string = "checkmark";
   authenticatedContacts: Array<Object> = [];
   allAuthenticated: boolean = false;
+  urlGif: string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider, private toastCtrl: ToastController) {
     this.user = {
@@ -32,6 +34,8 @@ export class Unlock {
       gps: false,
       fp: false
     };
+
+    this.urlGif = "../assets/icon/cat.gif";
 
     this.splitData(this.uploadProvider.getContacts(), this.user);
     // this.getData();
@@ -118,5 +122,10 @@ export class Unlock {
             console.log(err);
           });
     }
+
+    public changeGif = () => {
+      console.log('hiiii');
+      this.urlGif = "https://media.giphy.com/media/9fbYYzdf6BbQA/giphy.gif";
+    };
 
 }
