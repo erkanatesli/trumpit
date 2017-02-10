@@ -3,9 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Contacts } from '../pages/contacts/contacts';
 import { Unlock } from '../pages/unlock/unlock';
-import {HomePage} from "../pages/home/home";
-import {SummaryPage} from  "../pages/summary/summary";
-import { AuthoptionsPage} from "../pages/authoptions/authoptions";
+import { HomePage } from "../pages/home/home";
 import { UploadPage } from "../pages/upload/upload";
 import { gpsLocation } from "../pages/gpsLocation/gpsLocation";
 import { HttpModule } from '@angular/http';
@@ -17,8 +15,6 @@ import { SelectUsers } from "../pages/upload/selectUsers/selectUsers";
     Contacts,
     Unlock,
     HomePage,
-    SummaryPage,
-    AuthoptionsPage,
     UploadPage,
     gpsLocation,
     SelectUsers
@@ -33,8 +29,6 @@ import { SelectUsers } from "../pages/upload/selectUsers/selectUsers";
     Contacts,
     Unlock,
     HomePage,
-    SummaryPage,
-    AuthoptionsPage,
     UploadPage,
     gpsLocation,
     SelectUsers

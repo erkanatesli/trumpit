@@ -16,11 +16,9 @@
 
 
 <ion-content padding>
-  <button ion-button full (click)="newTransfer()">
+  <button ion-button full color="light" (click)="newTransfer()">
     <ion-icon [name]="plusIcon"></ion-icon>
-    <ion-title>
-      New secure transfer
-    </ion-title>
+      &nbsp;New secure transfer
   </button>
 
   <ion-card *ngFor="let file of files">
