@@ -46,4 +46,30 @@ export class DataService {
   getVersion() {
     return Device.version;
   }
+
+  getMockFiles() {
+    let files = [{
+      filename: "Your_mom.png",
+      contacts: ["Ahmet", "Erkan", "Nicolas"],
+      options:["Gps, FingerPrint"]
+    },{
+      filename: "Classified.pdf",
+      contacts: ["Wiliam", "Rohit", "Ahmet", "Erkan", "Nicolas"],
+      options:["Gps, FingerPrint"]
+    },{
+      filename: "private.doc",
+      contacts: ["Ko", "Jackie", "Nicolas"],
+      options:["Gps, FingerPrint"]
+    },{
+      filename: "Agreement.doc",
+      contacts: ["Ahmet", "Jackie", "Ko"],
+      options:["Gps, FingerPrint"]
+    },{
+      filename: "picture.jpg",
+      contacts: ["Rohit", "Erkan", "William", "Ko"],
+      options:["Gps, FingerPrint"]
+    }];
+    return files;
+  }
+
 }

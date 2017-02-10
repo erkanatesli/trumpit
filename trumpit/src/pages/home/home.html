@@ -16,7 +16,20 @@
 
 
 <ion-content padding>
+  <button ion-button full (click)="newTransfer()">
+    <ion-icon [name]="plusIcon"></ion-icon>
+    <ion-title>
+      New secure transfer
+    </ion-title>
+  </button>
 
-  <button ion-button (click)="showtext()">Show tekst</button>
+  <ion-card *ngFor="let file of files">
+    <ion-item>
+      {{file.filename}}
+    </ion-item>
+    <ion-item>
+      Contacts: {{userCount}}
+    </ion-item>
+  </ion-card>
 
 </ion-content>
