@@ -14,6 +14,7 @@ export class Unlock {
   items: Array<{title: string, note: string, icon: string}>;
 
   contacts: Array<string>;
+  numberOfContacts: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -33,6 +34,8 @@ export class Unlock {
     // }
 
     this.contacts = this.uploadProvider.getContacts();
+    this.numberOfContacts = this.contacts.length;
+    this.createStyle(this.numberOfContacts);
 
 
   }
@@ -42,5 +45,17 @@ export class Unlock {
     // this.navCtrl.push(Unlock, {
     //   item: item
     // });
+  }
+
+  private createStyle(numberOfElements, index) {
+    let rotation = this.calculateDegrees(numberOfElements);
+    let style = {
+      ""
+    }
+
+  }
+
+  private calculateDegrees(numberOfElements) {
+    return 360 * Math.round(1 / numberOfElements);
   }
 }
