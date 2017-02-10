@@ -17,6 +17,7 @@ export class Unlock {
   public gpsLocation;
   public gpsLocation_latitude;
   public gpsLocation_longitude;
+  public allOK: boolean;
   selectedItem: any;
   items: Array<{title: string, note: string, icon: string}>;
   user: Object;
@@ -36,6 +37,7 @@ export class Unlock {
       gps: false,
       fp: false
     };
+    this.allOK = false;
 
     this.urlGif = "../assets/icon/cat.gif";
 

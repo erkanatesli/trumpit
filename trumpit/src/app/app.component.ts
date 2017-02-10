@@ -27,8 +27,7 @@ export class MyApp {
       { title: 'Contacts', component: Contacts },
       { title: 'Unlock', component: Unlock },
       { title: 'Home', component: HomePage},
-      { title: 'Upload', component: UploadPage},
-      { title: 'gpsLocation', component: gpsLocation}
+      { title: 'Upload', component: UploadPage}
     ];
 
   }
