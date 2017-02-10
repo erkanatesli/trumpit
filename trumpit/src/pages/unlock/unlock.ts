@@ -12,45 +12,53 @@ import {Observer} from "rxjs";
 export class Unlock {
   selectedItem: any;
   items: Array<{title: string, note: string, icon: string}>;
-
+  user: Object;
   contacts: Array<Object> = [];
   gpsIcon: string = "locate";
   fpIcon: string = "finger-print";
+  keyIcon: string = "key";
   checkmark: string = "checkmark";
   authenticatedContacts: Array<Object> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider) {
-    // If we navigated to this page, we will have an item available as a nav param
-    // this.selectedItem = navParams.get('item');
+    this.user = {
+      userid: "Nicolas",
+      gps: false,
+      fp: false
+    };
 
-    this.splitData(this.uploadProvider.getContacts());
+    this.splitData(this.uploadProvider.getContacts(), this.user);
     // this.getData();
-  }
-
-  pingContact() {
-    // That's right, we're pushing to ourselves!
-    // this.navCtrl.push(Unlock, {
-    //   item: item
-    // });
   }
 
   getData(){
     this.uploadProvider.retrieveData()
       .subscribe((data:Object) =>
       {
-        this.splitData(data)
+        this.splitData(data, this.user)
       })
   }
 
-  splitData(data) {
+  splitData(data, _user) {
     console.log(data);
     for (let i in data) {
+      if(data[i].userid === _user.userid){
+        _user.gps = data[i].gps;
+        _user.fp = data[i].fp;
+      }
       if (data[i].gps === true && data[i].fp === true) {
         this.authenticatedContacts.push(data[i]);
       } else {
         this.contacts.push(data[i]);
       }
     }
+    if (this.contacts.length === 0) {
+      //goto view
+    }
+  }
+
+  public checkStatus() {
+
   }
 
 }
