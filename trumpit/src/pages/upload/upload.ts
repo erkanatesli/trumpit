@@ -60,7 +60,6 @@ export class UploadPage implements OnInit {
       usersData.push({"id": this.selectedUsers[i].relatieId})
     }
 
-    // console.log('seleted users', this.selectedUsers);
     let uploadData = {
       "senderId": this.dataService.getUDID(),
       "base64Image": this.secretFile,

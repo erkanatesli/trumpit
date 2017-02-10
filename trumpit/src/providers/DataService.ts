@@ -33,9 +33,6 @@ export class DataService {
     )
     return response;
 
-
-    // var response = this.http.post(baseURL + url).map(res => res.json());
-    // return response;
   }
 
   getUDID() {
