@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {UploadProvider} from "../../providers/upload-provider";
-import {Observer} from "rxjs";
 import { FingerprintAIO } from 'ionic-native';
 import { Geolocation } from 'ionic-native';
 import {Observable} from 'rxjs/Rx';
@@ -21,7 +20,7 @@ export class Unlock {
   public readFile: string;
   selectedItem: any;
   items: Array<{title: string, note: string, icon: string}>;
-  user: Object;
+  user: any;
   contacts: Array<Object> = [];
   gpsIcon: string = "locate";
   fpIcon: string = "finger-print";
@@ -68,8 +67,8 @@ export class Unlock {
       if(data[i].userid === _user.userid){
         _user.gps = data[i].gps;
         _user.fp = data[i].fp;
-      }
-      if (data[i].gps === true && data[i].fp === true) {
+        data.splice(i, 1);
+      } else if (data[i].gps === true && data[i].fp === true) {
         this.authenticatedContacts.push(data[i]);
       } else {
         this.contacts.push(data[i]);
@@ -80,7 +79,7 @@ export class Unlock {
     }
   }
 
-  public checkStatus(t) {
+  public checkStatus() {
 
     if (this.contacts.length === 0) {
       // goto next page
@@ -102,10 +101,11 @@ export class Unlock {
     console.log('hi');
     // this.getGeo();
     this.check();
-  }
+  };
 
   check(){
     console.log('check');
+    this.user.fp === true;
     FingerprintAIO.isAvailable().then(result =>{
       this.show();
     }).catch(err => {
