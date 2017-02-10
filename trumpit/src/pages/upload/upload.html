@@ -24,7 +24,7 @@
   <h2>To Users:</h2>
   <ion-list no-lines>
     <h2 ion-item *ngFor="let user of selectedUsers">
-      {{ user.Username }}
+      {{ user.name }}
     </h2>
   </ion-list>
   <button ion-button block (click)="selectUsers()">Select Users</button>

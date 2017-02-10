@@ -12,7 +12,8 @@ export class DataService {
   }
 
   getURL(url) {
-    var response = this.http.get(url).map(res => res.json());
+    var baseURL = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/";
+    var response = this.http.get(baseURL + url).map(res => res.json());
     return response;
   }
 

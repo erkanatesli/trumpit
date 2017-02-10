@@ -24,35 +24,35 @@ export class SummaryPage {
   }
 
   ionViewDidLoad() {
-    this.callService();
+    // this.callService();
 
-    console.log(this.dataService.getDeviceDetails());
-    this.showAlert(this.dataService.getDeviceDetails());
+    // console.log(this.dataService.getDeviceDetails());
+    // this.showAlert(this.dataService.getDeviceDetails());
 
     console.log('ionViewDidLoad SummaryPage');
   }
 
-  private callService() {
-    this.dataService.getURL('http://newplanner.testwilliam.mockable.io/doorgeven/RN00000004860591').subscribe(
-      data => {
-        this.myJSON = data.results;
-        console.log('Reponse:',data);
-      },
-      err => {
-        console.log(err);
-      },
-      () => console.log('Call Complete')
-    );
-  }
+  // private callService() {
+  //   this.dataService.getURL('http://newplanner.testwilliam.mockable.io/doorgeven/RN00000004860591').subscribe(
+  //     data => {
+  //       this.myJSON = data.results;
+  //       console.log('Response:',data);
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     },
+  //     () => console.log('Call Complete')
+  //   );
+  // }
 
-  private showAlert(value) {
-    let alert = this.alertCtrl.create({
-      title: 'Device Info',
-      subTitle: value,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
+  // private showAlert(value) {
+  //   let alert = this.alertCtrl.create({
+  //     title: 'Device Info',
+  //     subTitle: value,
+  //     buttons: ['OK']
+  //   });
+  //   alert.present();
+  // }
 
 
 
