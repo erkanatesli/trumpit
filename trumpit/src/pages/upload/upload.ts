@@ -73,6 +73,9 @@ export class UploadPage implements OnInit {
 
     this.dataService.postData(uploadData, "upload").subscribe(
       data => {
+
+
+
         console.log('Response:', data);
       },
       err => {

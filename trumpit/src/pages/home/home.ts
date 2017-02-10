@@ -30,7 +30,7 @@ export class HomePage {
 
   private getFiles() {
 
-    this.transfers = this.dataService.getMockFiles()
+    this.transfers = this.dataService.getDashboard()
     console.log('transfers', this.transfers);
 
       this.getUserCount();
