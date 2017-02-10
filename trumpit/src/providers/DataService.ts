@@ -19,7 +19,7 @@ export class DataService {
   getDeviceDetails(){
     var model = Device.model;
     var deviceID = Device.uuid;
-    var string = Device.version;
-    return model;
+    var str = Device.version;
+    return "model: " + model + " udid: " + deviceID + " version: " + str;
   }
 }
