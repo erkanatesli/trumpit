@@ -1,11 +1,11 @@
 export class Transfer {
-  public filename:string;
+  public subject:string;
   public contacts: Array<string>;
-  public options: Array<string>;
+  public id:string;
 
-  constructor(_filename: string, _contacts: Array<string>, _options:Array<string>) {
-    this.filename = _filename;
+  constructor(_subject: string, _contacts: Array<string>, _id: string) {
+    this.subject = _subject;
     this.contacts = _contacts;
-    this.options = _options;
+    this.id = _id;
   }
 }

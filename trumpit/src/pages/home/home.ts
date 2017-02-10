@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FingerprintAIO } from 'ionic-native';
 import {DataService} from "../../providers/DataService";
 import {UploadPage} from "../upload/upload"
+import {Unlock} from "../unlock/unlock"
 import {Transfer} from "../classes/transfer";
 // import { AndroidFingerprintAuth } from 'ionic-native';
 
@@ -29,23 +30,24 @@ export class HomePage {
   }
 
   private getFiles() {
-      this.transfers = this.dataService.getMockFiles()
-      this.getUserCount();
+
+    this.transfers = this.dataService.getDashboard()
+    console.log('transfers', this.transfers);
+
   }
 
   public newTransfer() {
     this.navCtrl.push(UploadPage);
   }
 
+  public goUnlockScreen() {
+    this.navCtrl.push(Unlock);
+  }
+
   ngOnInit() {
 
   }
 
-  private getUserCount(){
-    for (let i in this.transfers) {
-      let contacts: Array<string> = this.transfers[i].contacts;
-      this.userCount.push(contacts.length)
-    }
-  }
+
 
 }

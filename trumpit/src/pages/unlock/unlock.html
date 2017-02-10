@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content >
+<ion-content *ngIf="!allOK">
   <ion-card>
     <ion-card-title style="color:white; padding-left:10px">
       File: thisMusicSucks.omg
@@ -53,6 +53,11 @@
 
   <h1>Latitude = {{gpsLocation_latitude}}</h1>
   <h1>Longitude = {{gpsLocation_longitude}}</h1>
+  <button (click)="testOK()">All OK = {{allOK}}</button>
 
   <!-- <img src="{{urlGif}}" (click)="changeGif()"> -->
+</ion-content>
+
+<ion-content *ngIf="allOK">
+  <img src="{{readFile}}" style="width: 90%; height: auto; margin-left: auto; margin-right: auto; display: block;">
 </ion-content>
