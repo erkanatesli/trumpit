@@ -8,6 +8,7 @@ import {SummaryPage} from  "../pages/summary/summary";
 import { AuthoptionsPage} from "../pages/authoptions/authoptions";
 import { UploadPage } from "../pages/upload/upload";
 import { gpsLocation } from "../pages/gpsLocation/gpsLocation";
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { gpsLocation } from "../pages/gpsLocation/gpsLocation";
     gpsLocation
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
