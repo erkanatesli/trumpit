@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FingerprintAIO } from 'ionic-native';
+import {DataService} from "../../providers/DataService";
+import {UploadPage} from "../upload/upload"
 // import { AndroidFingerprintAuth } from 'ionic-native';
 
 /*
@@ -12,16 +14,26 @@ import { FingerprintAIO } from 'ionic-native';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
+  providers: [DataService]
 })
 export class HomePage implements OnInit {
 
-  // declare var Media:any;
+  plusIcon: string = "add";
+  files: Array<Object>;
+  userCount: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dataService: DataService) {
+    this.getFiles();
+  }
 
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad HomePage');
-  // }
+  public getFiles() {
+      this.files = this.dataService.getMockFiles()
+      this.userCount = this.files.length;
+  }
+
+  public newTransfer() {
+    this.navCtrl.push(UploadPage);
+  }
 
   public showtext = () => {
     console.log('hi');
