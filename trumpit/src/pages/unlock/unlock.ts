@@ -15,23 +15,13 @@ export class Unlock {
 
   contacts: Array<string>;
   numberOfContacts: number;
+  gpsIcon: string = "locate";
+  fpIcon: string = "finger-print";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider) {
     // If we navigated to this page, we will have an item available as a nav param
     // this.selectedItem = navParams.get('item');
-    //
-    // // Let's populate this page with some filler content for funzies
-    // this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    // 'american-football', 'boat', 'bluetooth', 'build'];
-    //
-    // this.items = [];
-    // for (let i = 1; i < 11; i++) {
-    //   this.items.push({
-    //     title: 'Item ' + i,
-    //     note: 'This is item #' + i,
-    //     icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-    //   });
-    // }
+
 
     this.contacts = this.uploadProvider.getContacts();
     this.numberOfContacts = this.contacts.length;
