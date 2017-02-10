@@ -1,6 +1,7 @@
 import {Http, Response, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Device} from 'ionic-native';
+import {Transfer} from "../pages/classes/transfer";
 
 
 export class DataService {
@@ -47,29 +48,29 @@ export class DataService {
     return Device.version;
   }
 
-  getMockFiles() {
-    let files = [{
-      filename: "Your_mom.png",
-      contacts: ["Ahmet", "Erkan", "Nicolas"],
-      options:["Gps, FingerPrint"]
-    },{
-      filename: "Classified.pdf",
-      contacts: ["Wiliam", "Rohit", "Ahmet", "Erkan", "Nicolas"],
-      options:["Gps, FingerPrint"]
-    },{
-      filename: "private.doc",
-      contacts: ["Ko", "Jackie", "Nicolas"],
-      options:["Gps, FingerPrint"]
-    },{
-      filename: "Agreement.doc",
-      contacts: ["Ahmet", "Jackie", "Ko"],
-      options:["Gps, FingerPrint"]
-    },{
-      filename: "picture.jpg",
-      contacts: ["Rohit", "Erkan", "William", "Ko"],
-      options:["Gps, FingerPrint"]
-    }];
-    return files;
+  public getMockFiles(): Array<Transfer> {
+    let transfers = new Array<Transfer>();
+    let transfer1 = new Transfer("Your_mom.png",
+                                ["Ahmet", "Erkan", "Nicolas"],
+                                ["Gps, FingerPrint"]);
+    transfers.push(transfer1);
+    let transfer2 = new Transfer("Classified.pdf",
+                                ["Wiliam", "Rohit", "Ahmet", "Erkan", "Nicolas"],
+                                ["Gps, FingerPrint"]);
+    transfers.push(transfer2);
+    let transfer3 = new Transfer("private.doc",
+                                ["Ko", "Jackie", "Nicolas"],
+                                ["Gps, FingerPrint"]);
+    transfers.push(transfer3);
+    let transfer4 = new Transfer("Agreement.doc",
+                                ["Ahmet", "Jackie", "Ko"],
+                                ["Gps, FingerPrint"]);
+    transfers.push(transfer4);
+    let transfer5 = new Transfer("picture.jpg",
+                                ["Rohit", "Erkan", "William", "Ko"],
+                                ["Gps, FingerPrint"]);
+    transfers.push(transfer5);
+    return transfers;
   }
 
 }

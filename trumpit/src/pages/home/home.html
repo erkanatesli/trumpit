@@ -21,12 +21,12 @@
       &nbsp;New secure transfer
   </button>
 
-  <ion-card *ngFor="let file of files">
+  <ion-card *ngFor="let file of transfers let i = index">
     <ion-item>
       {{file.filename}}
     </ion-item>
     <ion-item>
-      Contacts: {{userCount}}
+      Contacts: {{userCount[i]}}
     </ion-item>
   </ion-card>
 
