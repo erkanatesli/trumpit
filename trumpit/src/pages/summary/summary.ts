@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { DataService } from "../../providers/DataService";
-/*
-  Generated class for the Summary page.
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {DataService} from "../../providers/DataService";
+import {AlertController} from 'ionic-angular';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+/*
+ Generated class for the Summary page.
+
+ See http://ionicframework.com/docs/v2/components/#navigation for more info on
+ Ionic pages and navigation.
+ */
+
 @Component({
   selector: 'page-summary',
   templateUrl: 'summary.html',
@@ -15,24 +18,42 @@ import { DataService } from "../../providers/DataService";
 export class SummaryPage {
 
   myJSON: Array<any>;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: DataService) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: DataService, public alertCtrl: AlertController) {
 
   }
 
   ionViewDidLoad() {
+    this.callService();
 
-    this.dataService.searchMovies('http://newplanner.testwilliam.mockable.io/doorgeven/RN00000004860591').subscribe(
+    console.log(this.dataService.getDeviceDetails());
+    this.showAlert(this.dataService.getDeviceDetails());
+
+    console.log('ionViewDidLoad SummaryPage');
+  }
+
+  private callService() {
+    this.dataService.getURL('http://newplanner.testwilliam.mockable.io/doorgeven/RN00000004860591').subscribe(
       data => {
         this.myJSON = data.results;
-        console.log(data);
+        console.log('Reponse:',data);
       },
       err => {
         console.log(err);
       },
-      () => console.log('Movie Search Complete')
+      () => console.log('Call Complete')
     );
-
-    console.log('ionViewDidLoad SummaryPage');
   }
+
+  private showAlert(value) {
+    let alert = this.alertCtrl.create({
+      title: 'Device Info',
+      subTitle: value,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+
 
 }
