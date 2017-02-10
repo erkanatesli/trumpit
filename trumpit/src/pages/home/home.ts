@@ -33,7 +33,6 @@ export class HomePage {
     this.transfers = this.dataService.getDashboard()
     console.log('transfers', this.transfers);
 
-      this.getUserCount();
   }
 
   public newTransfer() {
@@ -44,11 +43,6 @@ export class HomePage {
 
   }
 
-  private getUserCount(){
-    for (let i in this.transfers) {
-      let contacts: Array<string> = this.transfers[i].contacts;
-      this.userCount.push(contacts.length)
-    }
-  }
+
 
 }
