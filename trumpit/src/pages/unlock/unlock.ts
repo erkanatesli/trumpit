@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {UploadProvider} from "../../providers/upload-provider";
@@ -13,7 +13,7 @@ import {Observable} from 'rxjs/Rx';
   templateUrl: 'unlock.html',
   providers: [UploadProvider]
 })
-export class Unlock {
+export class Unlock implements OnDestroy {
   public gpsLocation;
   public gpsLocation_latitude;
   public gpsLocation_longitude;
@@ -29,6 +29,7 @@ export class Unlock {
   authenticatedContacts: Array<Object> = [];
   allAuthenticated: boolean = false;
   urlGif: string;
+  public checker;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider, private toastCtrl: ToastController) {
@@ -42,10 +43,9 @@ export class Unlock {
     this.urlGif = "../assets/icon/cat.gif";
 
     // Observable.interval(2000 * 60).subscribe(x => {
-    Observable.interval(1000).subscribe((x) => {
-      console.log('hi');
+    this.checker = Observable.interval(2000).subscribe((x) => {
+      // console.log('hi');
       this.getGeo();
-      // doSomething();
     });
 
     this.splitData(this.uploadProvider.getContacts(), this.user);
@@ -97,7 +97,7 @@ export class Unlock {
   }
 
   public authenticateFP = () => {
-    console.log('hi');
+    // console.log('hi');
     // this.getGeo();
     this.check();
   }
@@ -138,6 +138,10 @@ export class Unlock {
       console.log('hiiii');
       this.urlGif = "https://media.giphy.com/media/9fbYYzdf6BbQA/giphy.gif";
     };
+
+    ngOnDestroy(){
+      this.checker.unsubscribe();
+     }
 
 
 
