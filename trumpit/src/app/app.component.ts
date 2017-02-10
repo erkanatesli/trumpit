@@ -5,9 +5,10 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { Contacts } from '../pages/contacts/contacts';
 import { Unlock } from '../pages/unlock/unlock';
 import { HomePage } from '../pages/home/home';
-import {SummaryPage} from  "../pages/summary/summary"
-import { AuthoptionsPage} from "../pages/authoptions/authoptions"
-import { UploadPage } from "../pages/upload/upload"
+import {SummaryPage} from  "../pages/summary/summary";
+import { AuthoptionsPage} from "../pages/authoptions/authoptions";
+import { UploadPage } from "../pages/upload/upload";
+import { gpsLocation } from "../pages/gpsLocation/gpsLocation";
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +30,8 @@ export class MyApp {
       { title: 'Home', component: HomePage},
       { title: 'Summary', component: SummaryPage},
       { title: 'Authentication Options', component: AuthoptionsPage},
-      { title: 'Upload', component: UploadPage}
+      { title: 'Upload', component: UploadPage},
+      { title: 'gpsLocation', component: gpsLocation}
     ];
 
   }

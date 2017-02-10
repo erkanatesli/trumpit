@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>GPS Location</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h1>Get GPS Location</h1>
+  <button ion-button (click)="doFunction()">Click here!</button>
+
+  <h1>Latitude = {{gpsLocation_latitude}}</h1>
+  <h1>Longitude = {{gpsLocation_longitude}}</h1>
+</ion-content>

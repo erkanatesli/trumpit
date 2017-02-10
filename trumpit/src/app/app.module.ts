@@ -4,9 +4,11 @@ import { MyApp } from './app.component';
 import { Contacts } from '../pages/contacts/contacts';
 import { Unlock } from '../pages/unlock/unlock';
 import {HomePage} from "../pages/home/home";
-import {SummaryPage} from  "../pages/summary/summary"
-import { AuthoptionsPage} from "../pages/authoptions/authoptions"
-import { UploadPage } from "../pages/upload/upload"
+import {SummaryPage} from  "../pages/summary/summary";
+import { AuthoptionsPage} from "../pages/authoptions/authoptions";
+import { UploadPage } from "../pages/upload/upload";
+import { gpsLocation } from "../pages/gpsLocation/gpsLocation";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -15,7 +17,8 @@ import { UploadPage } from "../pages/upload/upload"
     HomePage,
     SummaryPage,
     AuthoptionsPage,
-    UploadPage
+    UploadPage,
+    gpsLocation
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -28,7 +31,8 @@ import { UploadPage } from "../pages/upload/upload"
     HomePage,
     SummaryPage,
     AuthoptionsPage,
-    UploadPage
+    UploadPage,
+    gpsLocation
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
