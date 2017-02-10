@@ -1,6 +1,7 @@
-import {Http} from '@angular/http';
+import {Http, Response, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Device} from 'ionic-native';
+
 
 export class DataService {
   static get parameters() {
@@ -17,10 +18,32 @@ export class DataService {
     return response;
   }
 
-  getDeviceDetails(){
-    var model = Device.model;
-    var deviceID = Device.uuid;
-    var str = Device.version;
-    return "model: " + model + " udid: " + deviceID + " version: " + str;
+  postData(data, url) {
+    var baseURL = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/";
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    var response = this.http.post(
+      baseURL + url,
+      JSON.stringify(data),
+      {headers: headers}
+    ).map(
+      (res: Response) => res.json()
+    )
+    return response;
+
+
+    // var response = this.http.post(baseURL + url).map(res => res.json());
+    // return response;
+  }
+
+  getUDID() {
+    return Device.uuid;
+  }
+  getModel() {
+    return Device.model;
+  }
+  getVersion() {
+    return Device.version;
   }
 }

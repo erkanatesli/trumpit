@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, ModalController} from 'ionic-angular';
-import { SelectUsers } from './selectUsers/selectUsers';
-import { Camera } from 'ionic-native';
+import {Component, OnInit} from '@angular/core';
+import {NavController, NavParams, ModalController} from 'ionic-angular';
+import {SelectUsers} from './selectUsers/selectUsers';
+import {Camera} from 'ionic-native';
+import {DataService} from "./../../providers/DataService";
 
 @Component({
   selector: 'page-upload',
-  templateUrl: 'upload.html'
+  templateUrl: 'upload.html',
+  providers: [DataService]
 })
-export class UploadPage implements OnInit{
+export class UploadPage implements OnInit {
   private selectedUsers: Array<any>;
   private authLayers: Array<any>;
   private secretFile: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public dataService: DataService) {
 
   }
 
@@ -42,11 +44,66 @@ export class UploadPage implements OnInit{
   }
 
   private sendMessage() {
+    console.log('Sendmessage');
+
+    //creating object
+
+    let uploadData = {
+      "senderId": this.dataService.getUDID(),
+      "base64Image": this.secretFile,
+      "contacts": 30,
+      "authTypes": {
+        "first-line": "Some where",
+        "second-line": "Over Here",
+        "city": "In This City"
+      }
+    }
+
+    console.log('uploaddata', uploadData);
+
+
+    // {
+    //   "senderId":"123",
+    //   "base64Image":"asdfadsfasdfasdf234234535463456",
+    //   "contacts":[
+    //   {
+    //     "id":"2o3492348"
+    //   },
+    //   {
+    //     "id":"2o34953452348"
+    //   },
+    //   {
+    //     "id":"2o343242392348"
+    //   }
+    // ],
+    //   "authTypes":[
+    //   {
+    //     "name":"GPS"
+    //   },
+    //   {
+    //     "name":"Fingerprint"
+    //   }
+    // ]
+    // }
+
+
+
+    this.dataService.postData(this.selectedUsers, "upload").subscribe(
+      data => {
+        console.log('Response:', data);
+      },
+      err => {
+        console.log(err);
+      },
+      //stop spinner
+      () => console.log('Call Complete')
+    );
+
     // console.log(this.selectedUsers);
     // console.log(this.authLayers);
   }
 
-  private takePicture(){
+  private takePicture() {
     let options = {
       quality: 80,
       destinationType: 0,
@@ -55,20 +112,20 @@ export class UploadPage implements OnInit{
       targetWidth: 200,
       targetHeight: 300,
       saveToPhotoAlbum: false,
-      correctOrientation:true
+      correctOrientation: true
     };
     Camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64:
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-     console.log(imageData);
-     this.secretFile = base64Image;
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      console.log(imageData);
+      this.secretFile = base64Image;
     }, (err) => {
-     // Handle error
+      // Handle error
     });
   }
 
-  private uploadPicture(){
+  private uploadPicture() {
     let options = {
       quality: 80,
       destinationType: 0,
@@ -77,16 +134,16 @@ export class UploadPage implements OnInit{
       targetWidth: 400,
       targetHeight: 600,
       saveToPhotoAlbum: false,
-      correctOrientation:true
+      correctOrientation: true
     };
     Camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64:
-     let base64Image = 'data:image/jpeg;base64,' + imageData;
-     console.log(imageData);
-     this.secretFile = base64Image;
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      console.log(imageData);
+      this.secretFile = base64Image;
     }, (err) => {
-     // Handle error
+      // Handle error
     });
   }
 
