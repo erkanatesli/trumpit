@@ -102,24 +102,8 @@ export class UploadPage implements OnInit {
         console.log(res);
         if (res.succes){
         // If response is succesfull send to homepage
-          this.navCtrl.push(HomePage);
+          this.navCtrl.pop();
         }
-// =======
-//       data => {
-//
-//
-//         console.log('Response:', data);
-//         // If response is succesfull send to homepage
-//         if (data.succes) {
-//
-//           this.showConfirm();
-//           console.log('YOU ARE HJERE')
-//         }
-//         else {
-//           console.log("ERROR")
-//         }
-//         //
-// >>>>>>> 8d3e8b181cb23f624b1f093552f399c3ce91c33a
       },
       err => {
         console.log(err);
