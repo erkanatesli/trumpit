@@ -42,25 +42,25 @@ export class Unlock implements OnDestroy {
     this.user1 = {
       receiverId: this.dataService.getUDID(),
       gps: {
-        latitude: '',
-        longitude: ''
+        lat: '',
+        long: ''
       },
       fp: false,
       subject: this.fileSubject
     };
     this.user = {
       receiverId: this.dataService.getUDID(),
-      gps: false,
-      fp: false
+      gps: "false",
+      fp: "false"
     };
     this.allOK = false;
     this.readFile = "";
 
 
-    this.checker = Observable.interval(2500).subscribe((x) => {
+    this.checker = Observable.interval(5000).subscribe((x) => {
       this.getGeo();
-      this.user1.gps.latitude = this.gpsLocation_latitude;
-      this.user1.gps.longitude = this.gpsLocation_longitude;
+      this.user1.gps.lat = this.gpsLocation_latitude;
+      this.user1.gps.long = this.gpsLocation_longitude;
       console.log(this.user1);
 
       this.getData();
@@ -73,7 +73,7 @@ export class Unlock implements OnDestroy {
 
   private getData(){
 
-    this.dataService.postData(this.user1, "unlock").subscribe(
+    this.dataService.postData(this.user1, "filestatus").subscribe(
       res => {
         console.log("post response", res);
         console.log("Post respons id", res.ids);
@@ -86,7 +86,7 @@ export class Unlock implements OnDestroy {
   public VerifyAllStatus(data) {
     let counter = 0;
     for (let i = 0; i < data.length; i++){
-      if (data[i].gps === true && data[i].fp === true){
+      if (data[i].gps === "true" && data[i].fp === "true"){
         counter++;
       }
       if (counter === data.length){
@@ -118,7 +118,7 @@ export class Unlock implements OnDestroy {
         _user.gps = data[i].gps;
         _user.fp = data[i].fp;
         data.splice(i, 1);
-      } else if (data[i].gps === true && data[i].fp === true) {
+      } else if (data[i].gps === "true" && data[i].fp === "true") {
         this.authenticatedContacts.push(data[i]);
       } else {
         this.contacts.push(data[i]);
@@ -155,7 +155,7 @@ export class Unlock implements OnDestroy {
 
   check(){
     console.log('check');
-    this.user.fp === true;
+    // this.user.fp === true;
     FingerprintAIO.isAvailable().then(result =>{
       this.show();
     }).catch(err => {
@@ -168,11 +168,16 @@ export class Unlock implements OnDestroy {
        clientId: "Fingerprint-Demo",
        clientSecret: "password"
    }).then(result => {
-        this.user.fp = true;
+        this.user1.fp = true;
         console.log(result);
       }).catch(err => {
         console.log(err);
       });
+    }
+
+    mockGPS(){
+      this.gpsLocation_latitude = "51.2321121" ;
+      this.gpsLocation_longitude= "4.4232232";
     }
 
     getGeo() {

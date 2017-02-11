@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Unlock</ion-title>
+    <ion-title (click)="mockGPS()">Unlock</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -32,19 +32,28 @@
   <ion-card *ngFor="let contact of authenticatedContacts" >
     <button ion-item >
       <ion-icon [name]="checkmark" class=""></ion-icon>
-      <div class="item-note" item-right>
-        {{contact.receiverId}}
+      <div class="item-note" item-right *ngIf="contact.receiverId === 'ea47dd7627b9bac9'">
+        Nicolas
+      </div>
+      <div class="item-note" item-right *ngIf="contact.receiverId === 'f7270492c772a53a'">
+        William
       </div>
     </button>
   </ion-card>
   <ion-card *ngFor="let contact of contacts" >
     <button ion-item>
       <!--<ion-icon [name]="item.icon" item-left></ion-icon>-->
-      <ion-icon [name]="gpsIcon" [class.valid]="contact.gps" [class.invalid]="!contact.gps"></ion-icon>
-      <ion-icon [name]="fpIcon" [class.valid]="contact.fp" [class.invalid]="!contact.fp"></ion-icon>
-      <div class="item-note" item-right>
-        {{contact.receiverId}}
+      <ion-icon [name]="gpsIcon" [class.valid]="contact.gps === 'true'" [class.invalid]="!contact.gps === 'false'"></ion-icon>
+      <ion-icon [name]="fpIcon" [class.valid]="contact.fp === 'true'" [class.invalid]="!contact.fp === 'false'"></ion-icon>
+      <div class="item-note" item-right *ngIf="contact.receiverId === 'ea47dd7627b9bac9'">
+        Nicolas
       </div>
+      <div class="item-note" item-right *ngIf="contact.receiverId === 'f7270492c772a53a'">
+        William
+      </div>
+      <!-- <div class="item-note" item-right>
+        {{contact.receiverId}}
+      </div> -->
     </button>
   </ion-card>
   <!--<button ion-button full (click)="checkStatus()" style="position: absolute; bottom: 0px;">-->

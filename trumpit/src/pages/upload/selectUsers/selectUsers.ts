@@ -9,9 +9,10 @@ import {DataService} from "./../../../providers/DataService";
 })
 export class SelectUsers implements OnInit {
   public users: Array<any>;
+  myId: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public viewCtrl: ViewController, public dataService: DataService) {
-
+    this.myId = dataService.getUDID();
   }
 
   ngOnInit() {
