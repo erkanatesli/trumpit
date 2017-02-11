@@ -33,6 +33,7 @@ export class Unlock implements OnDestroy {
   allAuthenticated: boolean = false;
   urlGif: string;
   public checker;
+  timer: any;
 
 
   constructor(public navCtrl: NavController, public dataService: DataService, public navParams: NavParams, private uploadProvider: UploadProvider, private toastCtrl: ToastController) {
@@ -86,10 +87,21 @@ export class Unlock implements OnDestroy {
         console.log(counter);
       }
       if (counter === data.length){
+      // if (counter === data.length && this.allOK !== true){
 
-        this.allOK = true;
         this.readFile = "" //TODO GET RESULT CALL
+        // this.allOK = true;
+
+        // clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+          this.allOK = true;
+          console.log("OK = " + this.allOK);
+        }, 2000);
+        console.log("OK2 = " + this.allOK);
       }
+      // else if (counter === data.length && this.allOK === true) {
+      //   return
+      // }
       else {
         this.allOK = false;
         this.readFile = ""; //Clear file
