@@ -6,11 +6,13 @@ import { FingerprintAIO } from 'ionic-native';
 import { Geolocation } from 'ionic-native';
 import {Observable} from 'rxjs/Rx';
 
+import {DataService} from '../../providers/DataService';
+
 
 @Component({
   selector: 'page-unlock',
   templateUrl: 'unlock.html',
-  providers: [UploadProvider]
+  providers: [UploadProvider, DataService]
 })
 export class Unlock implements OnDestroy {
   public gpsLocation;
@@ -21,6 +23,7 @@ export class Unlock implements OnDestroy {
   selectedItem: any;
   items: Array<{title: string, note: string, icon: string}>;
   user: any;
+  user1: any;
   contacts: Array<Object> = [];
   gpsIcon: string = "locate";
   fpIcon: string = "finger-print";
@@ -32,37 +35,79 @@ export class Unlock implements OnDestroy {
   public checker;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private uploadProvider: UploadProvider, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public dataService: DataService, public navParams: NavParams, private uploadProvider: UploadProvider, private toastCtrl: ToastController) {
+    this.user1 = {
+      userid: this.dataService.getUDID(),
+      gps: {
+        latitude: '',
+        longitude: ''
+      },
+      fp: false
+    };
     this.user = {
-      userid: "Nicolas",
+      userid: this.dataService.getUDID(),
       gps: false,
       fp: false
     };
     this.allOK = false;
     this.readFile = "";
 
-    this.urlGif = "../assets/icon/cat.gif";
 
-    // Observable.interval(2000 * 60).subscribe(x => {
-    this.checker = Observable.interval(2000).subscribe((x) => {
-      // console.log('hi');
+    this.checker = Observable.interval(2500).subscribe((x) => {
       this.getGeo();
+      //TODO POST user
+      this.user1.gps.latitude = this.gpsLocation_latitude;
+      this.user1.gps.longitude = this.gpsLocation_longitude;
+      console.log(this.user1);
+
+      this.getData();
+
     });
 
-    this.splitData(this.uploadProvider.getContacts(), this.user);
-    // this.getData();
+    // this.splitData(this.uploadProvider.getContacts(), this.user);
+    this.getData();
   }
 
   private getData(){
-    this.uploadProvider.retrieveData()
-      .subscribe((data:Object) =>
-      {
-        this.splitData(data, this.user)
+
+    this.dataService.postData('test', "unlock").subscribe( //TODO real POST CALL
+      res => {
+        console.log("post response", res);
+        this.VerifyAllStatus(res);
+        this.splitData(res, this.user);
       })
+  };
+
+  public VerifyAllStatus(data) {
+    let counter = 0;
+    for (let i = 0; i < data.length; i++){
+      if (data[i].gps === true && data[i].fp === true){
+        counter++;
+        console.log(counter);
+      }
+      if (counter === data.length){
+        this.allOK = true;
+        this.readFile = "" //TODO GET RESULT CALL
+      }
+      else {
+        this.allOK = false;
+        this.readFile = ""; //Clear file
+      }
+    }
   }
 
+    // this.uploadProvider.retrieveData()
+    //   .subscribe((data:Object) =>
+    //   {
+    //     console.log(data);
+    //     this.splitData(data, this.user)
+    //   })
+  // }
+
   private splitData(data, _user) {
-    console.log(data);
+    console.log("First data", data);
+    this.authenticatedContacts = [];
+    this.contacts = [];
     for (let i in data) {
       if(data[i].userid === _user.userid){
         _user.gps = data[i].gps;
@@ -118,7 +163,7 @@ export class Unlock implements OnDestroy {
        clientId: "Fingerprint-Demo",
        clientSecret: "password"
    }).then(result => {
-        alert('post to backend');
+        this.user.fp = true;
         console.log(result);
       }).catch(err => {
         console.log(err);
@@ -131,28 +176,16 @@ export class Unlock implements OnDestroy {
           this.gpsLocation_latitude = position.coords.latitude;
           this.gpsLocation_longitude = position.coords.longitude;
 
+
           }, (err) => {
             console.log(err);
           });
     }
 
-    public changeGif = () => {
-      console.log('hiiii');
-      this.urlGif = "https://media.giphy.com/media/9fbYYzdf6BbQA/giphy.gif";
-    };
 
     ngOnDestroy(){
       this.checker.unsubscribe();
-     }
-
-
-    public testOK() {
-      this.allOK = true;
-      this.readFile = "";
-      setTimeout(() => {
-        this.allOK = false;
-        console.log("Setting back to False");
-      }, 3000);
     }
+
 
 }

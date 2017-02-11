@@ -12,6 +12,7 @@ export class DataService {
   constructor(private http: Http, private device: Device) {
     this.baseURL = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/";
     // this.baseURL = "http://localhost:8080/ppapi/v1-0/";
+    // this.baseURL = "http://192.168.43.125:8080/ppapi/v1-0/users/";
 
   }
 
@@ -47,21 +48,21 @@ export class DataService {
     return Device.version;
   }
 
-  getDashboard(): Array<Transfer> {
+  getDashboard(){
     let transfers = new Array<Transfer>();
+    let deviceId = this.getUDID();
 
-
+    // this.getURL('dashboard/' + deviceId).subscribe(
     this.getURL('dashboard').subscribe(
       data => {
 
         console.log('data', data);
-        for (var i = 0; i <= data.length - 1; i++) {
+        for (var i = 0; i < data.length; i++) {
           let trans = new Transfer(data[i].subject,
             data[i].contacts,
             data[i].id);
 
           transfers.push(trans);
-
         }
 
         // console.log('Response:', data);

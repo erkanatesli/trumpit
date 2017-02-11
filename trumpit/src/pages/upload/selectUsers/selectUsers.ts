@@ -21,7 +21,7 @@ export class SelectUsers implements OnInit {
 
   private getUsers() {
     //start spinner
-    this.dataService.getURL('users').subscribe(
+    this.dataService.getURL("").subscribe(
       data => {
         this.users = data;
         // console.log('key', this.users, this.users.length);

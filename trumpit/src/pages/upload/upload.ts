@@ -21,10 +21,10 @@ export class UploadPage implements OnInit {
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public dataService: DataService, public alertCtrl: AlertController) {
 
   }
+
   showConfirm() {
      let confirm = this.alertCtrl.create({
        title: 'Send Message?',
-
        buttons: [
          {
            text: 'Cancel',
@@ -36,14 +36,13 @@ export class UploadPage implements OnInit {
            text: 'Confirm',
            handler: () => {
              console.log('Agree clicked');
-             this.navCtrl.push(HomePage);
+             this.sendMessage();
            }
          }
        ]
      });
      confirm.present();
    }
-
 
   ngOnInit() {
     this.selectedUsers = [];
@@ -99,22 +98,12 @@ export class UploadPage implements OnInit {
     console.log('UploadData', uploadData);
 
     this.dataService.postData(uploadData, "upload").subscribe(
-      data => {
-
-
-
-        console.log('Response:', data);
+      res => {
+        console.log(res);
+        if (res.succes){
         // If response is succesfull send to homepage
-        if (data.succes)
-          {
-
-this.showConfirm();
-console.log('YOU ARE HJERE')
-          }
-        else{
-            console.log("ERROR")
-          }
-        //
+          this.navCtrl.push(HomePage);
+        }
       },
       err => {
         console.log(err);

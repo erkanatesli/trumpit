@@ -10,7 +10,7 @@ export class UploadProvider {
   constructor(public http: Http) {
     this.http = http;
     // provider for uploading the file with the backend.
-    this.url = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/dashboard"
+    this.url = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/unlock"
   }
 
   public getContacts() {
@@ -27,7 +27,7 @@ export class UploadProvider {
       gps: false,
       fp: true
     },{
-      userid: "Nicolas",
+      userid: "253a52f99d98279e",
       gps: true,
       fp: false
     }];
@@ -38,10 +38,9 @@ export class UploadProvider {
     console.log('retrieveData');
     return Observable.interval(2000)
       .switchMap((res) =>
-        this.http.get(this.url)
+        this.http.post(this.url, 'test')
           .map((res:Response, i:number)=> res.json().data));
   }
 
 
 }
-
