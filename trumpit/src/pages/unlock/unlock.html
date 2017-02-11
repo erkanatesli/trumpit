@@ -10,7 +10,7 @@
 <ion-content *ngIf="!allOK">
   <ion-card>
     <ion-card-title style="color:white; padding-left:10px">
-      File: thisMusicSucks.omg
+      MOET SUBJECTNAME ZIJN
     </ion-card-title>
   </ion-card>
   <ion-card>
@@ -25,7 +25,7 @@
         </button>
       </div>
       <div class="item-note" item-right>
-        {{user.userid}}
+        {{user.receiverId}}
       </div>
     </button>
   </ion-card>
@@ -33,7 +33,7 @@
     <button ion-item >
       <ion-icon [name]="checkmark" class=""></ion-icon>
       <div class="item-note" item-right>
-        {{contact.userid}}
+        {{contact.receiverId}}
       </div>
     </button>
   </ion-card>
@@ -43,7 +43,7 @@
       <ion-icon [name]="gpsIcon" [class.valid]="contact.gps" [class.invalid]="!contact.gps"></ion-icon>
       <ion-icon [name]="fpIcon" [class.valid]="contact.fp" [class.invalid]="!contact.fp"></ion-icon>
       <div class="item-note" item-right>
-        {{contact.userid}}
+        {{contact.receiverId}}
       </div>
     </button>
   </ion-card>

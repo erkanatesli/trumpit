@@ -38,7 +38,7 @@ export class Unlock implements OnDestroy {
 
   constructor(public navCtrl: NavController, public dataService: DataService, public navParams: NavParams, private uploadProvider: UploadProvider, private toastCtrl: ToastController) {
     this.user1 = {
-      userid: this.dataService.getUDID(),
+      receiverId: this.dataService.getUDID(),
       gps: {
         latitude: '',
         longitude: ''
@@ -46,7 +46,7 @@ export class Unlock implements OnDestroy {
       fp: false
     };
     this.user = {
-      userid: this.dataService.getUDID(),
+      receiverId: this.dataService.getUDID(),
       gps: false,
       fp: false
     };
@@ -59,7 +59,7 @@ export class Unlock implements OnDestroy {
       //TODO POST user
       this.user1.gps.latitude = this.gpsLocation_latitude;
       this.user1.gps.longitude = this.gpsLocation_longitude;
-      console.log(this.user1);
+      // console.log(this.user1);
 
       this.getData();
 
@@ -74,8 +74,9 @@ export class Unlock implements OnDestroy {
     this.dataService.postData('test', "unlock").subscribe( //TODO real POST CALL
       res => {
         console.log("post response", res);
-        this.VerifyAllStatus(res);
-        this.splitData(res, this.user);
+        console.log("Post respons id", res.ids);
+        this.VerifyAllStatus(res.ids);
+        this.splitData(res.ids, this.user);
       })
   };
 
@@ -84,20 +85,18 @@ export class Unlock implements OnDestroy {
     for (let i = 0; i < data.length; i++){
       if (data[i].gps === true && data[i].fp === true){
         counter++;
-        console.log(counter);
       }
       if (counter === data.length){
       // if (counter === data.length && this.allOK !== true){
 
         this.readFile = "" //TODO GET RESULT CALL
-        // this.allOK = true;
+        this.allOK = true;
 
-        // clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-          this.allOK = true;
-          console.log("OK = " + this.allOK);
-        }, 2000);
-        console.log("OK2 = " + this.allOK);
+        // this.timer = setTimeout(() => {
+        //   this.allOK = true;
+        //   console.log("OK = " + this.allOK);
+        // }, 2000);
+        // console.log("OK2 = " + this.allOK);
       }
       // else if (counter === data.length && this.allOK === true) {
       //   return
@@ -109,20 +108,12 @@ export class Unlock implements OnDestroy {
     }
   }
 
-    // this.uploadProvider.retrieveData()
-    //   .subscribe((data:Object) =>
-    //   {
-    //     console.log(data);
-    //     this.splitData(data, this.user)
-    //   })
-  // }
-
   private splitData(data, _user) {
     console.log("First data", data);
     this.authenticatedContacts = [];
     this.contacts = [];
     for (let i in data) {
-      if(data[i].userid === _user.userid){
+      if(data[i].receiverId === _user.userid){
         _user.gps = data[i].gps;
         _user.fp = data[i].fp;
         data.splice(i, 1);
