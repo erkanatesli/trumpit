@@ -14,20 +14,20 @@
     </ion-card-title>
   </ion-card>
   <ion-card>
-    <button ion-item (click)="authenticateFP()">
-      <div class="item-note" item-left>
-        <ion-icon [name]="gpsIcon" [class.valid]="user.gps" [class.invalid]="!user.gps"></ion-icon>
-        <ion-icon [name]="fpIcon" [class.valid]="user.fp" [class.invalid]="!user.fp"></ion-icon>
-      </div>
-      <div class="item-note" item-left>
-        <button ion-button>
+    <button ion-button (click)="authenticateFP()" full>
+      <!--<div class="item-note" item-left>-->
+        <!--<ion-icon [name]="gpsIcon" [class.valid]="user.gps" [class.invalid]="!user.gps"></ion-icon>-->
+        <!--<ion-icon [name]="fpIcon" [class.valid]="user.fp" [class.invalid]="!user.fp"></ion-icon>-->
+      <!--</div>-->
+      <!--<div class="item-note" item-left>-->
+        <!--<button ion-button >-->
           <ion-icon [name]="keyIcon" ></ion-icon>&nbsp;Authenticate
         </button>
-      </div>
-      <div class="item-note" item-right>
-        {{user.receiverId}}
-      </div>
-    </button>
+      <!--</div>-->
+      <!--<div class="item-note" item-right>-->
+        <!--{{user.receiverId}}-->
+      <!--</div>-->
+    <!--</button>-->
   </ion-card>
   <ion-card *ngFor="let contact of authenticatedContacts" >
     <button ion-item >
