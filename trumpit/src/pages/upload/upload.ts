@@ -3,7 +3,7 @@ import {NavController, NavParams, ModalController} from 'ionic-angular';
 import {SelectUsers} from './selectUsers/selectUsers';
 import {Camera} from 'ionic-native';
 import {DataService} from "./../../providers/DataService";
-import { AlertController } from 'ionic-angular';
+import {AlertController} from 'ionic-angular';
 
 import {HomePage} from "../home/home"
 
@@ -23,6 +23,7 @@ export class UploadPage implements OnInit {
   }
 
   showConfirm() {
+<<<<<<< HEAD
      let confirm = this.alertCtrl.create({
        title: 'Send Message?',
        buttons: [
@@ -43,6 +44,29 @@ export class UploadPage implements OnInit {
      });
      confirm.present();
    }
+=======
+    let confirm = this.alertCtrl.create({
+      title: 'Send Message?',
+
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Agree clicked');
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+>>>>>>> 8d3e8b181cb23f624b1f093552f399c3ce91c33a
 
   ngOnInit() {
     this.selectedUsers = [];
@@ -98,12 +122,29 @@ export class UploadPage implements OnInit {
     console.log('UploadData', uploadData);
 
     this.dataService.postData(uploadData, "upload").subscribe(
+<<<<<<< HEAD
       res => {
         console.log(res);
         if (res.succes){
         // If response is succesfull send to homepage
           this.navCtrl.push(HomePage);
         }
+=======
+      data => {
+
+
+        console.log('Response:', data);
+        // If response is succesfull send to homepage
+        if (data.succes) {
+
+          this.showConfirm();
+          console.log('YOU ARE HJERE')
+        }
+        else {
+          console.log("ERROR")
+        }
+        //
+>>>>>>> 8d3e8b181cb23f624b1f093552f399c3ce91c33a
       },
       err => {
         console.log(err);

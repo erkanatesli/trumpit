@@ -16,13 +16,15 @@
 
 
 <ion-content padding>
-  <button ion-button full color="light" (click)="newTransfer()">
+  <ion-card>
+  <button ion-button full  (click)="newTransfer()" style="height:80px;">
     <ion-icon [name]="plusIcon"></ion-icon>
       &nbsp;New secure transfer
   </button>
+  </ion-card>
 
-  <ion-card *ngFor="let file of transfers let i = index" (click)="goUnlockScreen()">
-    <ion-item>
+  <ion-card *ngFor="let file of transfers let i = index" style="background-color: #4d4d4d"  (click)="goUnlockScreen()">
+    <ion-item style="font-size: 16pt">
       {{file.subject}}
     </ion-item>
     <ion-item>

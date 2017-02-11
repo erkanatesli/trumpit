@@ -86,6 +86,7 @@ export class Unlock implements OnDestroy {
         console.log(counter);
       }
       if (counter === data.length){
+
         this.allOK = true;
         this.readFile = "" //TODO GET RESULT CALL
       }
