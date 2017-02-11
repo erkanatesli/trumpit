@@ -3,11 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { Contacts } from '../pages/contacts/contacts';
-import { Unlock } from '../pages/unlock/unlock';
 import { HomePage } from '../pages/home/home';
-import { UploadPage } from "../pages/upload/upload";
-import { gpsLocation } from "../pages/gpsLocation/gpsLocation";
-import { SelectUsers } from "../pages/upload/selectUsers/selectUsers";
 
 @Component({
   templateUrl: 'app.html'

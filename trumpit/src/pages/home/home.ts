@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { FingerprintAIO } from 'ionic-native';
 import {DataService} from "../../providers/DataService";
 import {UploadPage} from "../upload/upload"
 import {Unlock} from "../unlock/unlock"
