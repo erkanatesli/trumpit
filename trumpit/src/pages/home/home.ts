@@ -38,8 +38,10 @@ export class HomePage {
     this.navCtrl.push(UploadPage);
   }
 
-  public goUnlockScreen() {
-    this.navCtrl.push(Unlock);
+  public goUnlockScreen(fileSubject) {
+    this.navCtrl.push(Unlock, {
+      subject: fileSubject
+    });
   }
 
   ngOnInit() {

@@ -34,16 +34,19 @@ export class Unlock implements OnDestroy {
   urlGif: string;
   public checker;
   timer: any;
-
+  fileSubject: string;
 
   constructor(public navCtrl: NavController, public dataService: DataService, public navParams: NavParams, private uploadProvider: UploadProvider, private toastCtrl: ToastController) {
+
+    this.fileSubject = navParams.get("subject");
     this.user1 = {
       receiverId: this.dataService.getUDID(),
       gps: {
         latitude: '',
         longitude: ''
       },
-      fp: false
+      fp: false,
+      subject: this.fileSubject
     };
     this.user = {
       receiverId: this.dataService.getUDID(),
@@ -56,10 +59,9 @@ export class Unlock implements OnDestroy {
 
     this.checker = Observable.interval(2500).subscribe((x) => {
       this.getGeo();
-      //TODO POST user
       this.user1.gps.latitude = this.gpsLocation_latitude;
       this.user1.gps.longitude = this.gpsLocation_longitude;
-      // console.log(this.user1);
+      console.log(this.user1);
 
       this.getData();
 
@@ -71,12 +73,13 @@ export class Unlock implements OnDestroy {
 
   private getData(){
 
-    this.dataService.postData('test', "unlock").subscribe( //TODO real POST CALL
+    this.dataService.postData(this.user1, "unlock").subscribe(
       res => {
         console.log("post response", res);
         console.log("Post respons id", res.ids);
         this.VerifyAllStatus(res.ids);
         this.splitData(res.ids, this.user);
+        this.readFile = res.base64;
       })
   };
 
@@ -89,9 +92,7 @@ export class Unlock implements OnDestroy {
       if (counter === data.length){
       // if (counter === data.length && this.allOK !== true){
 
-        this.readFile = "" //TODO GET RESULT CALL
         this.allOK = true;
-
         // this.timer = setTimeout(() => {
         //   this.allOK = true;
         //   console.log("OK = " + this.allOK);

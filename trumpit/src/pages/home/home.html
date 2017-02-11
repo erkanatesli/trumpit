@@ -23,7 +23,7 @@
   </button>
   </ion-card>
 
-  <ion-card *ngFor="let file of transfers let i = index" style="background-color: #4d4d4d"  (click)="goUnlockScreen()">
+  <ion-card *ngFor="let file of transfers let i = index" style="background-color: #4d4d4d"  (click)="goUnlockScreen(file.subject)">
     <ion-item style="font-size: 16pt">
       {{file.subject}}
     </ion-item>
