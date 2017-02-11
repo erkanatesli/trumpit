@@ -19,13 +19,16 @@ import {Transfer} from "../classes/transfer";
 })
 export class HomePage {
 
-  plusIcon: string = "add";
+  plusIcon: string = "add-circle";
+  personIcon: string = "person"
   files: Array<Object>;
   userCount: Array<number> = [];
   transfers: Array<Transfer>;
+  userId: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataService: DataService) {
     this.getFiles();
+    this.userId = dataService.getUDID();
   }
 
   private getFiles() {
