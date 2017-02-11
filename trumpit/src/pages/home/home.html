@@ -23,13 +23,17 @@
   </button>
   </ion-card>
 
-  <ion-card *ngFor="let file of transfers let i = index" style="background-color: #4d4d4d"  (click)="goUnlockScreen()">
-    <ion-item style="font-size: 16pt">
-      {{file.subject}}
-    </ion-item>
-    <ion-item>
+  <ion-card *ngFor="let file of transfers let i = index"  (click)="goUnlockScreen()">
+    <!--<ion-item style="font-size: 16pt">-->
+     <!---->
+    <!--</ion-item>-->
+    <div style="height:35px; background-color: #303030; width: 93%;font-size:20px;margin: 0 10px; padding: 5px; vertical-align:center;"> {{file.subject}}
+      <ion-icon [name]="personIcon" style="float:right" *ngIf="userId === file.userId"></ion-icon>
+    </div>
+    <div style="font-size:12px; margin:3px 0 3px 12px; color: #b8b8b8" >
       Required attendees: {{file.contacts.length}}
-    </ion-item>
+      <span style="float:right; margin-right:20px">11-02-2017</span>
+    </div>
   </ion-card>
 
 </ion-content>
