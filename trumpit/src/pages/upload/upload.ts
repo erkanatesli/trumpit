@@ -3,7 +3,7 @@ import {NavController, NavParams, ModalController} from 'ionic-angular';
 import {SelectUsers} from './selectUsers/selectUsers';
 import {Camera} from 'ionic-native';
 import {DataService} from "./../../providers/DataService";
-import { AlertController } from 'ionic-angular';
+import {AlertController} from 'ionic-angular';
 
 import {HomePage} from "../home/home"
 
@@ -21,28 +21,29 @@ export class UploadPage implements OnInit {
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public dataService: DataService, public alertCtrl: AlertController) {
 
   }
-  showConfirm() {
-     let confirm = this.alertCtrl.create({
-       title: 'Send Message?',
 
-       buttons: [
-         {
-           text: 'Cancel',
-           handler: () => {
-             console.log('Disagree clicked');
-           }
-         },
-         {
-           text: 'Confirm',
-           handler: () => {
-             console.log('Agree clicked');
-             this.navCtrl.push(HomePage);
-           }
-         }
-       ]
-     });
-     confirm.present();
-   }
+  showConfirm() {
+    let confirm = this.alertCtrl.create({
+      title: 'Send Message?',
+
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Agree clicked');
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 
 
   ngOnInit() {
@@ -102,18 +103,16 @@ export class UploadPage implements OnInit {
       data => {
 
 
-
         console.log('Response:', data);
         // If response is succesfull send to homepage
-        if (data.succes)
-          {
+        if (data.succes) {
 
-this.showConfirm();
-console.log('YOU ARE HJERE')
-          }
-        else{
-            console.log("ERROR")
-          }
+          this.showConfirm();
+          console.log('YOU ARE HJERE')
+        }
+        else {
+          console.log("ERROR")
+        }
         //
       },
       err => {
