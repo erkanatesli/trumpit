@@ -10,9 +10,9 @@ export class DataService {
   }
   baseURL: string;
   constructor(private http: Http, private device: Device) {
-    this.baseURL = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/";
+    // this.baseURL = "http://trumpit.testwilliam.mockable.io/ppapi/v1-0/";
     // this.baseURL = "http://localhost:8080/ppapi/v1-0/";
-    // this.baseURL = "http://192.168.43.125:8080/ppapi/v1-0/users/";
+    this.baseURL = "http://192.168.43.125:8080/ppapi/v1-0/users/";
 
   }
 
